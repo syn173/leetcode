@@ -11,32 +11,30 @@ class Solution:
         res = []
         qList = []
 
-        def recursive(cnt, s, e):
-            if cnt == n:
-                res.append([''.join(chessboard[i]) for i in range(n)])
+        def recursive(i):
+            if i == n:
+                res.append([''.join(chessboard[a]) for a in range(n)])
                 return
 
-            for i in range(s, n):
-                for j in range(e if i == s else 0, n):
-                    if canHold(i, j):
-                        chessboard[i][j] = 'Q'
-                        qList.append((i, j))
+            for j in range(0, n):
+                if canHold(i, j):
+                    chessboard[i][j] = 'Q'
+                    qList.append((i, j))
 
-                        recursive(cnt + 1, i, j)
-                        chessboard[i][j] = '.'
-                        qList.remove((i, j))
+                    recursive(i + 1)
+                    chessboard[i][j] = '.'
+                    qList.remove((i, j))
 
 
         def canHold(i, j):
             if chessboard[i][j] == 'Q':
                 return False
-            # print('can', i, j, qList)
             for pos in qList:
                 if abs(pos[0] - i) == abs(pos[1] - j) or (pos[0] == i) or (pos[1] == j):
                     return False
             return True
 
-        recursive(0 ,0 ,0)
+        recursive(0)
         print(res)
         return res
 
