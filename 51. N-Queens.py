@@ -41,3 +41,7 @@ class Solution:
 
 solution = Solution()
 solution.solveNQueens(4)
+
+"""
+可优化点： qList可分开横轴和纵轴两个列表存储，因为行列的存储值肯定不会重复，同行或同列只要判断是否在数组中即可
+"""
