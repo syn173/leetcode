@@ -1,5 +1,5 @@
 /**
- * 动态规划题目，参考了solution，定义好dp[i][j]表示 子串word1[0, i-1]和word2[0, j-1]的解，遍好找到状态转移方程了
+ * 动态规划题目，参考了solution，定义好dp[i][j]表示 子串word1[0, i-1]和word2[0, j-1]的解，便好找到状态转移方程了
  */
 function minDistance(word1: string, word2: string): number {
   const m = word1.length;
