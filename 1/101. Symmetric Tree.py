@@ -2,6 +2,9 @@
 # 判断一棵树是否是镜像的，开始陷入dfs遍历的陷阱，中序的数组不能保证树的镜像的
 # 应该每层比较，递归的时候记录每层的数据然后进行判断，更适合用bfs的，bfs使用两个数组竟然内存开销更大了些
 
+"""
+参考submission，有更简单的dfs，dfs(left.left, right.right) and dfs(left.right, right.left)
+"""
 from typing import Optional
 
 class TreeNode:
@@ -80,3 +83,18 @@ class Solution:
                     queue.append(t.right)
 
         return True
+
+# 参考，这题难度是简单的，上面的解法似乎是搞复杂了
+class SolutionFromSumbission:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        if not root:
+            return True
+
+        def dfs(left, right):
+            if not left and not right:
+                return True
+            elif not left or not right:
+                return False
+            else:
+                return left.val == right.val and dfs(left.left, right.right) and dfs(left.right, right.left)
+        return dfs(root.left, root.right)
